@@ -9,23 +9,25 @@ Static marketing site for **leaStudios**. Plain HTML, CSS, and a single small JS
 ## Local development
 
 - Open `http://leastudios.test` in a browser. Herd serves the directory directly; just edit files and refresh.
-- Pretty URLs (`/privacy-policy`, `/agatha-christie-reading-list-support`) work because each route is its own subdirectory containing an `index.html`. To add a new page, create `<slug>/index.html` — do not create top-level `.html` files for routed pages.
+- Pretty URLs work because each route is its own subdirectory containing an `index.html`. To add a new page, create `<slug>/index.html` — do not create top-level `.html` files for routed pages.
 - There is no build, lint, or test command. Validate changes by loading the affected pages in the browser.
 
 ## Structure
 
 - `index.html` — home page.
-- `<slug>/index.html` — one directory per routed page (currently `privacy-policy/`, `agatha-christie-reading-list-support/`).
+- `<slug>/index.html` — one directory per routed page. Current routes: `approach/`, `work/`, `agatha-christie-reading-list-support/`, `privacy-policy/`.
+- `work/<slug>/index.html` — individual case studies, nested one level deeper. Current: `work/agatha-christie-reading-list/`.
 - `css/styles.css` — single shared stylesheet for every page. Edit here, not inline.
 - `js/scripts.js` — single shared script (mobile breakpoint, smooth-scroll, active-nav highlighting). Loaded by every page.
 - `images/` — shared image assets.
 
 ## Conventions to preserve
 
-- **Asset paths are relative, navigation paths are absolute.** Subpages reference assets with `../css/styles.css` and `../js/scripts.js`, but link to other pages with absolute paths (`/`, `/privacy-policy`, `/agatha-christie-reading-list-support`). Match this pattern when adding a page — absolute nav links keep the active-link logic in `js/scripts.js` working.
-- **Header, footer, and nav are duplicated across every `index.html`.** When adding or renaming a route, update the `<nav>` and `.footer-links` blocks in *all* pages, and add a matching branch to the `currentPath` check in `js/scripts.js`.
-- **Theming is via CSS custom properties** declared on `:root` in `css/styles.css` (`--primary-color`, `--secondary-color`, etc.). Use these instead of hard-coded colors.
-- **Fonts**: Montserrat (headings) and Roboto (body) loaded from Google Fonts in each `<head>`. Keep both `<link>` tags when creating a new page.
+- **Asset paths are relative, navigation paths are absolute.** Subpages reference assets with `../css/styles.css` (or `../../` from `work/<slug>/`), but link to other pages with absolute paths (`/`, `/work`, `/approach`, etc.). Absolute nav links keep the active-link logic in `js/scripts.js` working.
+- **Header, footer, and nav are duplicated across every `index.html` (currently 6 pages).** When adding or renaming a route, update the `<nav>` and `.footer-links` blocks in *every* page, and add a matching branch to the `currentPath` check in `js/scripts.js`. The Work dropdown markup (`.nav-item-work` with its `.work-dropdown` block listing every project) is also duplicated everywhere — when a new project ships, it must be added in all six places. **If we get past ~10 routes or the dropdown gets unwieldy, this is the point at which a build step or include mechanism stops being premature optimization.**
+- **The two legacy routes are permanent.** `/privacy-policy` and `/agatha-christie-reading-list-support` are referenced from the App Store and from external bookmarks — never delete them, never redirect them. They can be updated in place. The Agatha case study at `/work/agatha-christie-reading-list` is a *parallel* portfolio entry, not a replacement.
+- **Theming is via CSS custom properties** declared on `:root` in `css/styles.css` (`--paper`, `--ink`, `--ink-muted`, `--rule`, `--terracotta`, etc.). Use these instead of hard-coded colors. Avoid inline `style="..."` attributes; add a class to `styles.css` instead.
+- **Fonts**: Fraunces (display, with `opsz` variable axis) and Inter (body) loaded from Google Fonts in each `<head>`. Keep the `<link rel="preconnect">` lines and the single combined font URL when creating a new page.
 
 ## Web guidelines (project-wide)
 

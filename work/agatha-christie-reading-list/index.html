@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study — Agatha Christie Reading List, an iOS reading-progress tracker for the complete works of Agatha Christie.">
+    <title>Agatha Christie Reading List | Work | leaStudios</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">lea<span>Studios</span></a>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="nav-item-work">
+                        <a href="/work" aria-haspopup="true">Work</a>
+                        <div class="work-dropdown" role="menu">
+                            <div class="work-dropdown-group">
+                                <span class="work-dropdown-label">iOS</span>
+                                <a href="/work/agatha-christie-reading-list" role="menuitem">Agatha Christie Reading List</a>
+                            </div>
+                            <div class="work-dropdown-group">
+                                <span class="work-dropdown-label">Web</span>
+                                <p class="work-dropdown-empty">Case studies in progress.</p>
+                            </div>
+                            <div class="work-dropdown-group">
+                                <span class="work-dropdown-label">macOS</span>
+                                <p class="work-dropdown-empty">Case studies in progress.</p>
+                            </div>
+                            <div class="work-dropdown-group">
+                                <span class="work-dropdown-label">Tools</span>
+                                <p class="work-dropdown-empty">Case studies in progress.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="/approach">Approach</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <a href="/work" class="back-link">All work</a>
+            <div class="case-meta">
+                <span class="case-tag">iOS</span>
+                <span class="case-meta-divider"></span>
+                <span class="case-meta-item">Native, Swift</span>
+            </div>
+            <h1>Agatha Christie <em>Reading List</em></h1>
+            <p>A focused iOS companion for tracking your way through the complete works of the Queen of Mystery — novels, short story collections, and the Mary Westmacott titles, in one private list.</p>
+            <div class="case-links">
+                <a href="#" class="btn">View on the App Store</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero image -->
+    <div class="container">
+        <div class="case-image">
+            <img src="../../images/leastudios-agatha-christie.png" alt="Agatha Christie Reading List app on iPhone">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Overview -->
+            <section class="section">
+                <h2 class="section-title">Overview</h2>
+                <div class="case-section">
+                    <p>Agatha Christie's catalogue is large enough to be daunting — sixty-six detective novels, fourteen short story collections, six novels published as Mary Westmacott, and a handful of plays and memoirs. Most reading-order guides live in scattered blog posts and incomplete spreadsheets. The fans who keep returning to her work for decades deserve something better than that.</p>
+                    <p>The Agatha Christie Reading List is a small, private app for keeping track of where you are. Every work is listed; you mark each as read or currently reading; you sort by publication date or by series; you see what's left. No accounts, no social features, no recommendations engine — just the list, kept in good order.</p>
+                </div>
+            </section>
+
+            <!-- Approach -->
+            <section class="section">
+                <h2 class="section-title">Approach</h2>
+                <div class="case-section">
+                    <p>The brief was to ship the smallest version that worked. Every feature past the core of "list, mark, sort" had to earn its place — most didn't.</p>
+                    <ul>
+                        <li>Native iOS, written in Swift — no cross-platform shortcuts that would compromise feel</li>
+                        <li>Local-first by default: reading progress, notes, and custom book covers all live on the device, not in our hands</li>
+                        <li>Zero analytics, no tracking, no account required to use any feature</li>
+                        <li>Affiliate links to Apple Books for purchases, with free public-domain ebooks surfaced for users in the US where copyright allows</li>
+                        <li>A typography-forward list view designed for the long, slow browse — Christie's bibliography rewards a calm reading interface, not a busy one</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Outcome -->
+            <section class="section">
+                <h2 class="section-title">Outcome</h2>
+                <div class="case-section">
+                    <p>The app is live on the App Store. It's free, with no ads and no subscription, and it's intentionally narrow in scope — a tool for one specific kind of reader rather than a generic reading tracker that happens to include Christie.</p>
+                    <p>It's the kind of project that defines how this studio likes to work: small, focused, native, and designed with the user's privacy as a starting point rather than an afterthought.</p>
+
+                    <div class="case-cross-link">
+                        Need help with the app, or want to report an issue? <a href="/agatha-christie-reading-list-support">Visit the support page →</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/work">Work</a>
+                <a href="/approach">Approach</a>
+                <a href="/privacy-policy">Privacy Policy</a>
+            </div>
+            <p class="copyright">&copy; <script>document.write(new Date().getFullYear());</script> leaStudios. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/scripts.js"></script>
+</body>
+</html>

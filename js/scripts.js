@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const linkPath = link.getAttribute('href');
         if (linkPath === currentPath ||
             (currentPath === '/' && linkPath === '/') ||
+            (currentPath.startsWith('/work') && linkPath === '/work') ||
             (currentPath.endsWith('/approach') && linkPath === '/approach') ||
             (currentPath.endsWith('/privacy-policy') && linkPath === '/privacy-policy') ||
             (currentPath.endsWith('/agatha-christie-reading-list-support') && linkPath === '/agatha-christie-reading-list-support')) {
