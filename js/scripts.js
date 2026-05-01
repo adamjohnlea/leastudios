@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
     document.querySelectorAll('nav a').forEach(link => {
         const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath || 
-            (currentPath === '/' && linkPath === '/') || 
+        if (linkPath === currentPath ||
+            (currentPath === '/' && linkPath === '/') ||
+            (currentPath.endsWith('/approach') && linkPath === '/approach') ||
             (currentPath.endsWith('/privacy-policy') && linkPath === '/privacy-policy') ||
             (currentPath.endsWith('/agatha-christie-reading-list-support') && linkPath === '/agatha-christie-reading-list-support')) {
             link.classList.add('active');
