@@ -1,12 +1,38 @@
 // leaStudios Website JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile navigation toggle
-    const mobileBreakpoint = 768;
+    // Mobile navigation toggle (hamburger overlay)
+    const navToggle = document.querySelector('.nav-toggle');
+    const primaryNav = document.getElementById('primary-nav');
 
-    // Function to check if we're on mobile view
-    function isMobileView() {
-        return window.innerWidth < mobileBreakpoint;
+    function setNavOpen(open) {
+        document.body.toggleAttribute('data-nav-open', open);
+        if (navToggle) {
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        }
+    }
+
+    if (navToggle && primaryNav) {
+        navToggle.addEventListener('click', function() {
+            const open = !document.body.hasAttribute('data-nav-open');
+            setNavOpen(open);
+            if (open) {
+                const firstLink = primaryNav.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }
+        });
+
+        primaryNav.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') setNavOpen(false);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.hasAttribute('data-nav-open')) {
+                setNavOpen(false);
+                navToggle.focus();
+            }
+        });
     }
 
     // Smooth scrolling for anchor links
@@ -20,14 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Offset for fixed header
+                    top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
                 });
-
-                // Close mobile menu if open
-                if (isMobileView()) {
-                    // Add mobile menu toggle functionality here if needed
-                }
             }
         });
     });

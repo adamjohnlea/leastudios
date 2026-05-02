@@ -71,8 +71,64 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 1.5rem 0;
+  padding-block: 1.5rem;
   gap: 1.5rem;
+}
+
+/* Hamburger toggle — hidden on desktop, shown ≤768px */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  cursor: pointer;
+  color: var(--ink);
+  position: relative;
+  z-index: 60;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.nav-toggle-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.125rem;
+  position: relative;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after,
+.nav-toggle-icon span {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 220ms ease, top 220ms ease, bottom 220ms ease, opacity 150ms ease;
+}
+
+.nav-toggle-icon::before { top: 0; }
+.nav-toggle-icon span { top: 50%; transform: translateY(-50%); }
+.nav-toggle-icon::after { bottom: 0; }
+
+body[data-nav-open] .nav-toggle-icon::before {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+body[data-nav-open] .nav-toggle-icon::after {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+body[data-nav-open] .nav-toggle-icon span {
+  opacity: 0;
 }
 
 .logo {
@@ -882,8 +938,71 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  nav ul {
-    gap: 1rem;
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Overlay nav — full-screen mobile menu */
+  header nav {
+    position: fixed;
+    inset: 0;
+    background: var(--paper);
+    z-index: 55;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 220ms ease, visibility 0s linear 220ms;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body[data-nav-open] header nav {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 220ms ease, visibility 0s;
+  }
+
+  body[data-nav-open] {
+    overflow: hidden;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100%;
+    padding: 6rem var(--gutter) 4rem;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+  }
+
+  header nav ul li {
+    width: 100%;
+  }
+
+  header nav ul li a {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-variation-settings: "opsz" 96;
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1;
+    color: var(--ink);
+    padding-bottom: 0;
+  }
+
+  header nav ul li a.active::after {
+    display: none;
+  }
+
+  header nav ul li a:hover,
+  header nav ul li a.active {
+    color: var(--terracotta);
+  }
+
+  /* Mobile users go straight to /work — no submenu */
+  .nav-item-work > a::after,
+  .nav-item-work .work-dropdown {
+    display: none;
   }
 
   .service-card {
@@ -917,22 +1036,5 @@ footer {
 
   .project-tile-arrow {
     display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  nav ul {
-    gap: 0.75rem;
-    justify-content: flex-start;
-  }
-
-  nav ul li a {
-    font-size: 0.875rem;
   }
 }
